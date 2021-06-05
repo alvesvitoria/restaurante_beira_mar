@@ -1,0 +1,35 @@
+body {font-family: "Lato", sans-serif;}
+.sidebar {
+
+    height: 100%;
+    width:250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #54C3DB;
+    overflow-x: hidden;
+    padding-top: 10%
+}
+
+.sidebar a {
+    padding: 6px 8px 6px 40px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    color: black;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}

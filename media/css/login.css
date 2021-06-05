@@ -1,0 +1,68 @@
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.10), rgba(0, 0, 0, 0.10)), url("../fundo.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: 0;
+}
+
+.logo{
+    position: relative;
+    width: 500px;
+    height: 450px;
+    left: -8%;
+    top:20%;
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #54c3db;
+    overflow-x: hidden;
+}
+
+.main {
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 10px;}
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        position: relative;
+        top: 10%;
+        margin-left: 2%;
+    }
+    .sidenav{
+        width: 45%;
+        position: fixed;
+        z-index: 1;
+        top: 0%;
+        left: 80%;
+    }
+}
+
+.form-control
+{
+    width: 300px;
+    height: 100%;
+    padding: 11px;
+    border: 0;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.btn-green {
+    width: 150px;
+    position: relative;
+    left: 80%;
+    border-radius: 18px;
+    background-color: #00a400  !important;
+    color: #fff;
+    transition-duration: 0.4s;
+}
+.btn-green:hover {
+    background-color: #0ff089 !important;
+    color: #fff;
+}
