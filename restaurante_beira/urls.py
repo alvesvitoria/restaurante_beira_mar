@@ -16,6 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
 from core import views
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -24,11 +25,12 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cliente/all/', views.list_all_cliente),
-    path('login/', views.login_user),
-    path('login/submit', views.submit_login),
-    path('logout/', views.logout_user),
-    path('', RedirectView.as_view(url="cliente/all/")),
+    path('accounts/', include('accounts.urls'))
+    # path('cliente/all/', views.list_all_cliente),
+    # path('login/', views.login_user),
+    # path('login/submit', views.submit_login),
+    # path('logout/', views.logout_user),
+    # path('', RedirectView.as_view(url="cliente/all/")),
 
 ]
 urlpatterns += staticfiles_urlpatterns()
