@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block 'page-title' %}Cadastro{% endblock %}
+
+{% block 'content' %}
+    <article>
+        <h1>Cadastro</h1>
+        
+        {% comment %} {% include 'includes/_messages.html' %} {% endcomment %}
+        
+        <form method="POST" action="{% url 'accounts:register' %}">
+            {% csrf_token %}
+            {% include 'accounts/includes/_form.html' %}
+            <button type="submit">Cadastrar</button>
+        </form>
+    </article>
+{% endblock %}
