@@ -1,8 +1,8 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
+                                        PermissionsMixin)
 from django.db import models
-from django.core.validators import validate_email
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import MinLengthValidator
+
 from .validators import cpf_validator
 
 
@@ -43,12 +43,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField('último nome', max_length=150, null=True)
 
     cpf = models.CharField('CPF', max_length=13, null=False,
-                           validators=[MinLengthValidator(11), cpf_validator])
+                           validators=[cpf_validator])
 
     birth_date = models.DateField('data de nascimento', null=True)
 
-    email = models.EmailField('email', validators=[
-                              validate_email], unique=True)
+    email = models.EmailField('email', unique=True)
 
     phone = models.CharField('telefone', max_length=30, null=False)
 
