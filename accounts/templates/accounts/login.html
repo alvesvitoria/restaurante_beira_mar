@@ -1,25 +1,39 @@
 {% extends 'base.html' %}
 
+{% load widget_tweaks %}
+
 {% block 'page-title' %}Login{% endblock %}
 
 {% block 'content' %}
-    <section>
-        <h1>Login</h1>
+    <div class="sidenav">
+        <img class="logo" src="../media/logo.png">
+        <div class="main">
+            <div class="col-md-2 col-sm-2">
 
-        {% comment %} {% include 'includes/_messages.html' %} {% endcomment %}
+                {% include 'includes/_messages.html' %}
 
-        {% if not user.is_authenticated %}
-        <form method="POST" action="{% url 'accounts:login' %}">
-            {% csrf_token %}
-            {% include 'accounts/includes/_form.html' %}
-            <button type="submit">Logar</button>
-        </form>
-        {% else %}
-        <p>
-            Você está logado como {{ user.username }}
-            <a href="{% url 'accounts:logout' %}">clique aqui</a> para deslogar.
-        </p>
-        {% endif %}
+                <div class="login-form">
 
-    </section>
+                    {% if not user.is_authenticated %}
+                        <form method="POST" action="{% url 'accounts:login' %}">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+
+                            {% for field in form %}
+                                {% render_field field class='form-control' placeholder=field.label %}
+                                {{ field.errors }}
+                            {% endfor %}
+                            
+                            <button type="submit" class="btn btn-green">Entrar</button>
+                        </form>
+                    {% else %}
+                        <p>
+                            Você está logado como {{ user.username }}
+                            <a href="{% url 'accounts:logout' %}">clique aqui</a> para deslogar.
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
