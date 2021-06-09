@@ -17,11 +17,22 @@
                     {% if not user.is_authenticated %}
                         <form method="POST" action="{% url 'accounts:login' %}">
                             {% csrf_token %}
-                            {{ form.non_field_errors }}
+
+                            <div class="form-messages">
+                                {% for error in field.non_field_errors %}
+                                    <div class="alert alert-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
 
                             {% for field in form %}
-                                {% render_field field class='form-control' placeholder=field.label %}
-                                {{ field.errors }}
+
+                                <div class="{{ field.name }}-messages">
+                                    {% for error in field.errors %}
+                                        <div class="alert alert-danger">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                {% render_field field class='form-control toValidate' placeholder=field.label %}
                             {% endfor %}
                             
                             <button type="submit" class="btn btn-green">Entrar</button>
