@@ -24,11 +24,14 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cliente/all/', views.list_all_cliente),
     path('login/', views.login_user),
     path('login/submit', views.submit_login),
     path('logout/', views.logout_user),
-    path('', RedirectView.as_view(url="cliente/all/")),
+    path('', views.index),
+
+    path('cardapio/all/', views.list_all_cardapio),
+    path('cardapio/detail/<slug:id>/', views.cardapio_detail),
+
 
 ]
 urlpatterns += staticfiles_urlpatterns()

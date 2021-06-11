@@ -1,0 +1,38 @@
+{% extends "model-page.html" %}
+
+{% block style %}
+    <style>
+        div.polaroid {
+            width: 250px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+            border-radius: 50px;
+        }
+        div.container {
+            padding: 10px;
+            padding-top: 40px;
+
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+            <div class="row">
+                {% for p in cardapio %}
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <a href="../detail/{{ p.id }}">
+                            <div class="polaroid">
+                                <img src="{{ p.photo.url }}" alt="Norway" style="width:100%; border-radius: 50px">
+                                <div class="container">
+                                    <p>{{ p.nm_prato }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        <br>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

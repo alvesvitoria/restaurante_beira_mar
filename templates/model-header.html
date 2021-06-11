@@ -13,18 +13,34 @@
         <link rel="stylesheet" href="{% static '../media/css/header.css' %}" >
     </head>
     <body>
-      <div style="background-color: #54C3DB; position: relative;" class="text-right mr-6">
-          <a style="position: relative; right: 9px; padding-right: 25px; color: black;" href="/admin/"><i class="fas fa-cog"></i> Administração</a>
-          <a style="position: relative; right: 12px; color: black;" href="/logout/"><i class="far fa-share-square"></i> Sair</a>
-      </div>
-       <div class="sidebar">
-              <a href="#reservas"><i class="far fa-calendar-check"></i> Reservas</a>
-              <a href="#clients"><i class="fa fa-fw fa-user"></i> Clientes</a>
-              <a href="#cardapio"><i class='fas fa-drumstick-bite'></i> Cardápio</a>
-              <a href="#relatorio"><i class='fas fa-chart-line'></i> Relatórios</a>
-       </div>
-       <div class="main">
-       </div>
+        <div class="topnav" id="myTopnav">
+          <a href="/" class="active"><i class="fa fa-fw fa-home"></i> Home</a>
+          <a href="/reservas"><i class="far fa-calendar-check"></i> Reservas</a>
+          <a href="/cardapio/all"><i class="fas fa-drumstick-bite"></i> Cardápios</a>
+          <a href="#contato"><i class="fas fa-phone-volume"></i> Contatos</a>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+          <a style="position: relative; left: 60%; right: 12px; color: black;" href="/login/"><i class="far fa-share-square"></i> Entrar</a>
+        </div>
+
+        <div class="hero-image">
+          <div class="hero-text">
+            <h1 style="font-size:50px">Restaurante Beira-Mar</h1>
+            <p>Delicias com gosto de casa</p>
+            <button>Faça sua reserva</button>
+          </div>
+        </div>
+
+
+        <script>
+            function myFunction() {
+              var x = document.getElementById("myTopnav");
+              if (x.className === "topnav") {
+                x.className += " responsive";
+              } else {
+                x.className = "topnav";
+              }
+        }
+        </script>
     </body>
 </html>
 
