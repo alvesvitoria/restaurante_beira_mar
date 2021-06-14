@@ -1,0 +1,21 @@
+<div class="topnav" id="myTopnav">
+    <a href="{% url 'core:index' %}" class="active"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="/reservas"><i class="far fa-calendar-check"></i> Reservas</a>
+    <a href="{% url 'core:cardapios' %}"><i class="fas fa-drumstick-bite"></i> Cardápios</a>
+    <a href="#contato"><i class="fas fa-phone-volume"></i> Contatos</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+    {% if not user.is_authenticated %}
+        <a style="position: relative; left: 60%; right: 12px; color: black;" href="{% url 'accounts:login' %}"><i class="far fa-share-square"></i> Entrar</a>
+    {% endif %}
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+</div>

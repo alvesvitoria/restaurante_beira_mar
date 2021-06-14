@@ -1,0 +1,41 @@
+{% extends 'accounts/base.html' %}
+{% load widget_tweaks %}
+
+{% block 'page-title' %}Cadastro{% endblock %}
+
+{% block 'content' %}
+    <div class="sidenav">
+        <img class="logo" src="../media/log.png">
+        <div class="main">
+            <div class="col-md-2 col-sm-2">
+
+                {% include 'includes/_messages.html' %}
+
+                <div class="login-form">
+                
+                    <form method="POST" action="{% url 'accounts:register' %}">
+                        {% csrf_token %}
+                        
+                        <div class="form-messages">
+                            {% for error in field.non_field_errors %}
+                                <div class="alert alert-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+
+                        {% for field in form %}
+                            <div class="{{ field.name }}-messages">
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            {% render_field field class='form-control toValidate' placeholder=field.label %}
+                        {% endfor %}
+                        
+                        <button type="submit" class="btn btn-green">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
