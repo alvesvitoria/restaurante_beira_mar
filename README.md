@@ -1,4 +1,4 @@
-# restaurante_beira_mar
+# Restaurante Beira Mar
 Sistema de controle de um restaurante desenvolvido em Django.
 
 
