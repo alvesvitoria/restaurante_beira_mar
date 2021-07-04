@@ -1,75 +1,52 @@
+from accounts.models import Cliente
 from django.db import models
-from django.contrib.auth.models import User
-
-
-class Clientes(models.Model):
-    nm_cliente = models.CharField(max_length=150)
-    endereco = models.TextField()
-    telefone = models.CharField(max_length=11)
-    celular = models.CharField(max_length=11)
-    email = models.EmailField()
-    cpf = models.CharField(max_length=15)
-    active = models.BooleanField(default=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.id)
-
-    class Meta:
-        db_table = 'clientes'
 
 
 class Cardapio(models.Model):
-    nm_prato = models.CharField(max_length=150)
+    # https://docs.djangoproject.com/en/3.0/ref/models/fields/#enumeration-types
+    class Categorias(models.TextChoices):
+        ARABE = 'Árabe'
+        ORIENTAL = 'Oriental'
+        BRASILEIRA = 'Brasileira'
+        MEDITERRANEA = 'Mediterrânea'
+        CONTEMPORANEA = 'Contemporânea'
+        __empty__ = 'Desconhecido'
+
+    nome_prato = models.CharField(max_length=150)
     tamanho = models.CharField(max_length=11)
-    categoria = models.CharField(max_length=50)
+    categoria = models.CharField(
+        default=Categorias.__empty__, max_length=15, choices=Categorias.choices)
     ingredientes = models.TextField()
     valor = models.DecimalField(max_digits=5, decimal_places=2)
     descricao = models.TextField()
-    photo = models.ImageField(upload_to='prato', blank=True, null=True)
-    active = models.BooleanField(default=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    foto = models.ImageField(upload_to='prato', blank=True, null=True)
+    ativo = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.id)
-
+        return self.nome_prato
 
     class Meta:
         db_table = 'cardapio'
 
 
-class Reserva(models.Model):
-    nome = models.CharField(max_length=200)
-    email = models.CharField(max_length=100)
-    celular = models.CharField(max_length=13)
-    ocasiao = models.CharField(max_length=60)
-    num_pessoas = models.IntegerField()
-
-    def __str__(self):
-        return str(self.id)
-
-    class Meta:
-        db_table = 'reservas'
-
-
 class Mesa(models.Model):
-    num_mesa = models.IntegerField()
-    quant_cadeiras = models.IntegerField()
+    num_mesa = models.IntegerField(unique=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.num_mesa)
 
     class Meta:
         db_table = 'mesa'
 
 
-class Horario(models.Model):
-    id_mesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
-    id_reservas = models.ForeignKey(Reserva, on_delete=models.CASCADE)
-    data = models.DateTimeField()
+class Reserva(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING, default=None)
+    mesa = models.ForeignKey(Mesa, on_delete=models.DO_NOTHING, default=None)
+    data = models.DateField()
+    hora = models.TimeField(default=None)
 
     def __str__(self):
-        return str(self.id)
+        return f'{self.cliente} / {self.mesa}'
 
     class Meta:
-        db_table = 'horario'
+        db_table = 'reserva'

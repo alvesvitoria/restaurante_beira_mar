@@ -1,0 +1,44 @@
+{% extends 'model-page.html' %}
+
+{% block 'style' %}
+    <style>
+        div.polaroid {
+            width: 250px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+            border-radius: 50px;
+        }
+        div.container {
+            padding: 10px;
+            padding-top: 40px;
+
+        }
+    </style>
+{% endblock %}
+
+{% block 'page-title' %}Dashboard{% endblock %}
+
+{% block 'content' %}
+    <div class="container">
+        <h1>Suas reservas</h1>
+        {% include 'includes/_messages.html' %}
+        <div class="row">
+            {% if reservas %}
+                {% for r in reservas %}
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                            <div class="polaroid">
+                                <div class="container">
+                                    <p>{{ r.data }}</p>
+                                    <p>{{ r.hora }}</p>
+                                </div>
+                                <a class="text-danger" href="{% url 'core:cancela_reserva' r.id %}">Cancelar</a>
+                            </div>
+                        <br>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Não existem reservas ativas.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

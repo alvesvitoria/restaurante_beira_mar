@@ -1,0 +1,70 @@
+{% extends "model-page.html" %}
+
+{% block 'style' %}
+    <style>
+        body {
+          font-family: Verdana, sans-serif;
+          margin: 0;
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        .row  {
+          padding-left: 20%;
+            padding-top: 50px;
+        }
+
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        .column {
+          float: left;
+          width: 25%;
+          padding-left: 20px;
+           margin-top: 0%;
+
+        }
+
+        img.hover-shadow {
+          transition: 0.3s;
+        }
+
+        .hover-shadow:hover {
+          box-shadow: 0 7px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
+{% endblock %}
+
+{% block 'content' %}
+  <div class="hero-image">
+      <div class="hero-text">
+          <h1 style="font-size:50px">Restaurante Beira-Mar</h1>
+          <p>Delicias com gosto de casa</p>
+          <form method="GET" action="{% url 'core:reserva' %}">
+            <button>Faça sua reserva</button>
+          </form>
+      </div>
+  </div>
+
+  {% include 'includes/_messages.html' %}
+
+  <div class="row">
+    <div class="column">
+        <p>Vinhos</p>
+      <img src="../media/vinhos.jpg" style="width:100%"  class="hover-shadow cursor">
+    </div>
+    <div class="column">
+        <p>Frutos do Mar</p>
+      <img src="../media/bacalhau.jpg" style="width:100%"  class="hover-shadow cursor">
+    </div>
+    <div class="column">
+        <p>Massas</p>
+      <img src="../media/penne.jpg" style="width:100%" class="hover-shadow cursor">
+    </div>
+  </div>
+{% endblock %}
