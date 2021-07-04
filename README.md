@@ -1,5 +1,4 @@
-# Restaurante Beira Mar
-Sistema de controle de um restaurante desenvolvido em Django.
+# Sistema de controle de um restaurante desenvolvido em Django.
 
 
 Criar um ambiente virtual
