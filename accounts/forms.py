@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.forms import widgets
 from accounts.models import Cliente
 
 
@@ -29,3 +30,4 @@ class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.auto_id = '%s'
+        self.fields['birth_date'].widget = widgets.DateInput({'type': 'date'})

@@ -1,41 +1,44 @@
 {% extends 'accounts/base.html' %}
 {% load widget_tweaks %}
 
-{% block 'page-title' %}Cadastro{% endblock %}
+{% block 'page-title' %}Entrar{% endblock %}
 
 {% block 'content' %}
-    <div class="sidenav">
-        <img class="logo" src="../media/log.png">
-        <div class="main">
-            <div class="col-md-2 col-sm-2">
+   <div class="sidenav">
+      <a href="{% url 'core:index' %}">
+         <img class="logo" src="../templates/logo.png">
+      </a>
+      <div class="main">
+         <div class="col-md-2 col-sm-2">
 
-                {% include 'includes/_messages.html' %}
+            {% include 'includes/_messages.html' %}
 
-                <div class="login-form">
-                
-                    <form method="POST" action="{% url 'accounts:register' %}">
-                        {% csrf_token %}
-                        
-                        <div class="form-messages">
-                            {% for error in field.non_field_errors %}
-                                <div class="alert alert-danger">{{ error }}</div>
-                            {% endfor %}
-                        </div>
+            <div class="register-form">
 
-                        {% for field in form %}
-                            <div class="{{ field.name }}-messages">
-                                {% for error in field.errors %}
-                                    <div class="alert alert-danger">{{ error }}</div>
-                                {% endfor %}
-                            </div>
+               <form method="POST" action="{% url 'accounts:login' %}">
+                  {% csrf_token %}
 
-                            {% render_field field class='form-control toValidate' placeholder=field.label %}
+                  <div class="form-messages">
+                     {% for error in field.non_field_errors %}
+                           <div class="alert alert-danger">{{ error }}</div>
+                     {% endfor %}
+                  </div>
+
+                  {% for field in form %}
+                     <div class="{{ field.name }}-messages">
+                        {% for error in field.errors %}
+                           <div class="alert alert-danger">{{ error }}</div>
                         {% endfor %}
-                        
-                        <button type="submit" class="btn btn-green">Cadastrar</button>
-                    </form>
-                </div>
+                     </div>
+
+                     {{ field.label }}:{% render_field field class='form-control toValidate' %}
+                  {% endfor %}
+                  
+                  <button type="submit" class="btn btn-green">Registrar</button>
+               </form>
+               <a href="{% url 'accounts:login' %}">Entrar</a>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 {% endblock %}

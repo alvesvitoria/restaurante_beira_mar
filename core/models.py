@@ -1,5 +1,5 @@
-from django.db import models
 from accounts.models import Cliente
+from django.db import models
 
 
 class Cardapio(models.Model):
@@ -23,43 +23,30 @@ class Cardapio(models.Model):
     ativo = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.id)
+        return self.nome_prato
 
     class Meta:
         db_table = 'cardapio'
 
 
 class Mesa(models.Model):
-    num_mesa = models.IntegerField()
-    quant_cadeiras = models.IntegerField()
+    num_mesa = models.IntegerField(unique=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.num_mesa)
 
     class Meta:
         db_table = 'mesa'
 
 
 class Reserva(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING)
-    mesa = models.ForeignKey(Mesa, on_delete=models.DO_NOTHING)
+    cliente = models.ForeignKey(Cliente, on_delete=models.DO_NOTHING, default=None)
+    mesa = models.ForeignKey(Mesa, on_delete=models.DO_NOTHING, default=None)
     data = models.DateField()
-    periodo = models.DurationField()
-    quant_pessoas = models.IntegerField()
+    hora = models.TimeField(default=None)
 
     def __str__(self):
-        return str(self.id)
+        return f'{self.cliente} / {self.mesa}'
 
     class Meta:
-        db_table = 'reservas'
-
-
-class Promocao(models.Model):
-    ativo = models.BooleanField(default=True)
-    nome = models.CharField(max_length=150)
-    descricao = models.TextField()
-    desconto = models.FloatField()
-    cardapio = models.ForeignKey(Cardapio, on_delete=models.DO_NOTHING)
-
-    class Meta:
-        db_table = 'promocao'
+        db_table = 'reserva'

@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('cardapios/', views.list_all_cardapio, name='cardapios'),
     path('cardapio/<int:id>/', views.cardapio_detail, name='cardapio'),
-    path('reserva/', views.reserva, name='reserva')
+    path('reserva/', views.reserva, name='reserva'),
+    path('cancela_reserva/<int:id>', views.cancela_reserva, name='cancela_reserva'),
 ]

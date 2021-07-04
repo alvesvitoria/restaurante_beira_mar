@@ -15,13 +15,13 @@
             </div>
 
             {% for field in form %}
-                <div class="{{ field.name }}-messages">
-                {% for error in field.errors %}
-                    <div class="alert alert-danger">{{ error }}</div>
-                {% endfor %}
-                </div>
+                {{ field.label }}:{% render_field field class='form-control toValidate' %}
 
-                {% render_field field class='form-control toValidate' placeholder=field.label %}
+                <div class="{{ field.name }}-messages">
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
             {% endfor %}
             
             <button type="submit" class="btn btn-green">Reservar</button>

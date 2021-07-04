@@ -45,9 +45,13 @@
       <div class="hero-text">
           <h1 style="font-size:50px">Restaurante Beira-Mar</h1>
           <p>Delicias com gosto de casa</p>
-          <button>Faça sua reserva</button>
+          <form method="GET" action="{% url 'core:reserva' %}">
+            <button>Faça sua reserva</button>
+          </form>
       </div>
   </div>
+
+  {% include 'includes/_messages.html' %}
 
   <div class="row">
     <div class="column">

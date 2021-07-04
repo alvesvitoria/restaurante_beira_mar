@@ -5,7 +5,9 @@
 
 {% block 'content' %}
    <div class="sidenav">
-      <img class="logo" src="../media/logo.png">
+      <a href="{% url 'core:index' %}">
+         <img class="logo" src="../media/logo.png">
+      </a>
       <div class="main">
          <div class="col-md-2 col-sm-2">
 
@@ -29,11 +31,12 @@
                         {% endfor %}
                      </div>
 
-                     {% render_field field class='form-control toValidate' placeholder=field.label %}
+                     {{ field.label }}:{% render_field field class='form-control toValidate' %}
                   {% endfor %}
                   
                   <button type="submit" class="btn btn-green">Entrar</button>
                </form>
+               <a href="{% url 'accounts:register' %}">Registrar</a>
             </div>
          </div>
       </div>

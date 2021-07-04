@@ -1,3 +1,4 @@
+from core.models import Reserva
 from django.http.request import HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
@@ -27,7 +28,7 @@ def login(request: HttpRequest):
 @login_required(redirect_field_name='accounts:login')
 def logout(request: HttpRequest):
     auth.logout(request)
-    return redirect('post:index')
+    return redirect('core:index')
 
 
 def register(request: HttpRequest):
@@ -49,4 +50,6 @@ def register(request: HttpRequest):
 
 @login_required(redirect_field_name='accounts:login')
 def dashboard(request: HttpRequest):
-    return render(request, 'accounts/dashboard.html')
+    reservas = Reserva.objects.filter(cliente=request.user)
+
+    return render(request, 'accounts/dashboard.html', {'reservas': reservas})

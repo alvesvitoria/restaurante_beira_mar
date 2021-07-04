@@ -18,8 +18,9 @@
 
 {% block 'content' %}
     <div class="container">
+            <h1>Cardápios</h1>
             <div class="row">
-                {% for p in cardapio %}
+                {% for p in cardapios %}
                     <div class="col-sm-12 col-md-6 col-lg-4">
                         <a href="{% url 'core:cardapio' p.id %}">
                             <div class="polaroid">

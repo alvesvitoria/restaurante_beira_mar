@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import widgets
 from .models import Reserva
 
 
@@ -10,3 +11,7 @@ class ReservaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.auto_id = '%s'
+        self.fields['data'].widget = widgets.DateInput({'type': 'date'})
+        self.fields['hora'].widget = widgets.TimeInput({'type': 'time'})
+        
+        
