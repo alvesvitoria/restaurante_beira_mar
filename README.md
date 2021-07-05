@@ -11,4 +11,15 @@ Ativar o ambiente virtual Linux
 source my_env/bin/activate
 ```
 
+Ativar o ambiente virtual Linux
+```bash
+source my_env/bin/activate
+```
+
+Criar as migrações com base nos modelos 
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
 
