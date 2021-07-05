@@ -6,7 +6,7 @@
 {% block 'content' %}
    <div class="sidenav">
       <a href="{% url 'core:index' %}">
-         <img class="logo" src="../templates/logo.png">
+         <img class="logo" src="../media/logo.png">
       </a>
       <div class="main">
          <div class="col-md-2 col-sm-2">
@@ -15,7 +15,7 @@
 
             <div class="register-form">
 
-               <form method="POST" action="{% url 'accounts:login' %}">
+               <form method="POST" action="{% url 'accounts:register' %}">
                   {% csrf_token %}
 
                   <div class="form-messages">
