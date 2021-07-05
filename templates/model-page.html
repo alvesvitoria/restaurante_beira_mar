@@ -23,8 +23,12 @@
         {% include 'includes/_nav.html' %}
         
         {% block 'content' %}{% endblock %}
-        
+        <br>
+        <br>
+        <br>
+        <br>
         {% include 'includes/_footer.html' %}
+        {% block 'extras' %}{% endblock %}
     </body>
 
     <script src="{% static 'form.js' %}"></script>
